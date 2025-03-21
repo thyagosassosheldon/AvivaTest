@@ -3,4 +3,41 @@
   <groupId>AvivaTest</groupId>
   <artifactId>AvivaTest</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  
+  <properties>
+  	<maven.compiler.source>24</maven.compiler.source>
+  	<maven.compiler.target>24</maven.compiler.target>
+  	<project.build.sourceEnconding>UTF-8</project.build.sourceEnconding>
+  </properties>
+  
+  <dependencies>
+  
+<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+	<dependency>
+    	<groupId>org.seleniumhq.selenium</groupId>
+    	<artifactId>selenium-java</artifactId>
+    	<version>4.18.1</version>
+	</dependency>
+	
+	<!-- https://mvnrepository.com/artifact/io.appium/java-client -->
+	<dependency>
+    	<groupId>io.appium</groupId>
+    	<artifactId>java-client</artifactId>
+    	<version>9.2.0</version>
+	</dependency>
+  	
+  	<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
+	<dependency>
+    	<groupId>io.cucumber</groupId>
+    	<artifactId>cucumber-java</artifactId>
+    	<version>7.21.1</version>
+	</dependency>
+	
+	<dependency>
+			<groupId>com.aventstack</groupId>
+			<artifactId>extentreports-cucumber4-adapter</artifactId>
+			<version>1.0.12</version>
+	</dependency>
+	
+  </dependencies>  
 </project>
