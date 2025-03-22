@@ -9,11 +9,10 @@ import io.cucumber.junit.CucumberOptions;
 import io.cucumber.junit.CucumberOptions.SnippetType;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(features = "src/test/resources/features",
+@CucumberOptions(features = "src/main/java/resources/features",
 		glue = "execute",
-		tags = "@fast",
+		tags = "@WebLogin",
 		plugin = {
-				"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
 				"json:target/evidencias/json/report.json",
 		},
 		monochrome = true,
@@ -25,11 +24,12 @@ public class TestRunner {
 
 	public static boolean CLOSE = false;
 	public static boolean HEADLESS = false;
-	public static Browsers BROWSER = Browsers.ANDROID;
+	public static Browsers BROWSER = Browsers.CHROME;
 
 	@BeforeClass
 	public static void screenshotFileCheck() {
 		//Utils.createFiles();
 		//Utils.deleteFiles();
 	}
+	
 }
