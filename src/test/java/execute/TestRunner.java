@@ -9,7 +9,7 @@ import io.cucumber.junit.CucumberOptions;
 import io.cucumber.junit.CucumberOptions.SnippetType;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(features = "src/main/java/resources/features",
+@CucumberOptions(features = "src/test/java/resources/features",
 		glue = "execute",
 		tags = "@Mobile",
 		plugin = {
