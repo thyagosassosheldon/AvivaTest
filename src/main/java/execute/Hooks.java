@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 
-public class HookBefore {
+public class Hooks {
 	
 
 	@Before(order = 0)
