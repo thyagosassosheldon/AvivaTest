@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.android.AndroidDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public enum Browsers {
@@ -21,7 +22,7 @@ public enum Browsers {
 	ANDROID {
 		@Override
 		public WebDriver newDriver(boolean headless) {			
-			return new AppiumDriver(appiumOptions());
+			return new AndroidDriver(appiumOptions());
 		}
 	}
 	;

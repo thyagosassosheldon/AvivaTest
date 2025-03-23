@@ -43,6 +43,7 @@ public class BrowserOptions {
 		options.setCapability("automationName","UiAutomator2");
 		options.setCapability("appPackage","br.com.kabum.webviewapp");
 		options.setCapability("appActivity","br.com.kabum.webviewapp.MainActivity");
+		options.setCapability("shouldTerminateApp",true);
 		
 		return options;
 	}

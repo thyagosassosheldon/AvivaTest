@@ -24,7 +24,7 @@ public class DriverFactory {
 		driver = TestRunner.BROWSER.newDriver(TestRunner.HEADLESS);
 		if(TestRunner.BROWSER.toString() != "ANDROID") {
 			driver.manage().window().maximize();	
-		}				
+		}
 		return driver;
 	}
 	

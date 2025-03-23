@@ -22,7 +22,7 @@ import io.cucumber.junit.CucumberOptions.SnippetType;
 
 public class TestRunner {
 
-	public static boolean CLOSE = false;
+	public static boolean CLOSE = true;
 	public static boolean HEADLESS = false;
 	public static Browsers BROWSER = Browsers.ANDROID;
 

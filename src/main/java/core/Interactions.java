@@ -20,7 +20,9 @@ import static core.DriverFactory.getDriver;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.ElementNotInteractableException;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.NoSuchFrameException;
@@ -36,6 +38,8 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import io.appium.java_client.AppiumBy;
 
 
 
@@ -300,6 +304,28 @@ public class Interactions{
 			EXCEPTION.getException(e, description);
 		}
 		return null;
+	}
+	
+	public void scrollTo(String command, String description) {
+		log.info(String.format("Método: scrollTo() - Scrolando até o texto %s.", description));
+		try {
+			getDriver().findElement(new AppiumBy.ByAndroidUIAutomator(command)).click();
+			
+		} catch (NoSuchElementException e) {
+			NO_SUCH_ELEMENT.getException(e, description);
+
+		} catch (TimeoutException e) {
+			TIMEOUT.getException(e, description);
+
+		} catch (StaleElementReferenceException e) {
+			STALE_REFERENCE.getException(e, description);
+
+		} catch (ElementNotInteractableException e) {
+			NOT_INTERACTABLE.getException(e, description);
+
+		} catch (Exception e) {
+			EXCEPTION.getException(e, description);
+		}
 	}
 
 	/**
@@ -639,7 +665,7 @@ public class Interactions{
 			return getDriver().findElement(by).isDisplayed();
 
 		} catch (NoSuchElementException e) {
-			NO_SUCH_ELEMENT.getException(e, description);
+			return false;
 
 		} catch (TimeoutException e) {
 			TIMEOUT.getException(e, description);
@@ -1109,6 +1135,8 @@ public class Interactions{
 		}
 		return 0;
 	}
+	
+	
 
 }
 
