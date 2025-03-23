@@ -11,7 +11,7 @@ import io.cucumber.junit.CucumberOptions.SnippetType;
 @RunWith(Cucumber.class)
 @CucumberOptions(features = "src/main/java/resources/features",
 		glue = "execute",
-		tags = "@WebLogin",
+		tags = "@Mobile",
 		plugin = {
 				"json:target/evidencias/json/report.json",
 		},
@@ -24,7 +24,7 @@ public class TestRunner {
 
 	public static boolean CLOSE = false;
 	public static boolean HEADLESS = false;
-	public static Browsers BROWSER = Browsers.CHROME;
+	public static Browsers BROWSER = Browsers.ANDROID;
 
 	@BeforeClass
 	public static void screenshotFileCheck() {

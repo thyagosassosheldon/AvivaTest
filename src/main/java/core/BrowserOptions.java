@@ -2,10 +2,6 @@ package core;
 
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.edge.EdgeOptions;
-import org.openqa.selenium.firefox.FirefoxBinary;
-import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 
@@ -45,8 +41,8 @@ public class BrowserOptions {
 		options.setCapability("platformName","Android");
 		options.setCapability("platformVersion","16");
 		options.setCapability("automationName","UiAutomator2");
-		options.setCapability("appPackage","br.com.petz");
-		options.setCapability("appActivity","br.com.hanzo.petz.auth.AuthLoginActivity");
+		options.setCapability("appPackage","br.com.kabum.webviewapp");
+		options.setCapability("appActivity","br.com.kabum.webviewapp.MainActivity");
 		
 		return options;
 	}

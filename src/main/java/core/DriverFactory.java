@@ -22,7 +22,9 @@ public class DriverFactory {
 	public static WebDriver initDriver() {
 		WebDriver driver = null;
 		driver = TestRunner.BROWSER.newDriver(TestRunner.HEADLESS);
-		driver.manage().window().maximize();			
+		if(TestRunner.BROWSER.toString() != "ANDROID") {
+			driver.manage().window().maximize();	
+		}				
 		return driver;
 	}
 	

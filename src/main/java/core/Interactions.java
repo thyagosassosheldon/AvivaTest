@@ -13,6 +13,7 @@ import java.time.Duration;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static core.DriverFactory.getDriver;
@@ -27,6 +28,9 @@ import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.interactions.Pause;
+import org.openqa.selenium.interactions.PointerInput;
+import org.openqa.selenium.interactions.Sequence;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -90,57 +94,6 @@ public class Interactions{
 		log.info(String.format("Método: write() - Escrevendo '%s' no elemento %s.", text, description));
 		try {
 			getDriver().findElement(by).sendKeys(text);
-
-		} catch (NoSuchElementException e) {
-			NO_SUCH_ELEMENT.getException(e, description);
-
-		} catch (TimeoutException e) {
-			TIMEOUT.getException(e, description);
-
-		} catch (StaleElementReferenceException e) {
-			STALE_REFERENCE.getException(e, description);
-
-		} catch (ElementNotInteractableException e) {
-			NOT_INTERACTABLE.getException(e, description);
-
-		} catch (Exception e) {
-			EXCEPTION.getException(e, description);
-		}
-	}
-
-	/**
-	 * <p>
-	 * <strong>Substitui:</strong>
-	 * <ul>
-	 * <li>escreverSlow()</li>
-	 * </ul>
-	 * <p>
-	 * <strong>Função:</strong> escreve lentamente uma {@link String string} no
-	 * elemento especificado.
-	 * 
-	 * @param by          é o {@link By seletor} do elemento.
-	 * @param text        é a {@link String string} a ser escrita no elemento.
-	 * @param description é o {@link String nome} do elemento.
-	 * @return {@link Void void}
-	 * @throws NoSuchElementException          caso o elemento não existir.
-	 * @throws TimeoutException                caso exceder o tempo de carregamento
-	 *                                         do elemento.
-	 * @throws ElementNotVisibleException      caso a visão do elemento estiver
-	 *                                         obstruída ou ele estiver oculto.
-	 * @throws StaleElementReferenceException  caso o elemento não estiver mais
-	 *                                         visível na DOM.
-	 * @throws ElementNotInteractableException caso o elemento estiver visível, mas
-	 *                                         em um estado não interagível.
-	 * @throws Exception                       caso ocorra uma exceção não tratada.
-	 * @see InteracaoException
-	 */
-	public void writeSlowly(By by, String text, String description) {
-		log.info(String.format("Método: writeSlowly() - Escrevendo lentamente '%s' no elemento %s.", text, description));
-		try {
-			textClear(by, description);
-			WebElement txtValor = getDriver().findElement(by);
-			List<String> list = Arrays.asList(text.split(""));
-			list.forEach(f -> txtValor.sendKeys(f));
 
 		} catch (NoSuchElementException e) {
 			NO_SUCH_ELEMENT.getException(e, description);
@@ -529,12 +482,12 @@ public class Interactions{
 	 * @see #compareTime(Instant, Instant)
 	 * @see #awaitElement(By, String)
 	 */
-	public void awaitElement(By by, Duration seconds, String description) {
+	public void awaitElement(By by, int seconds, String description) {
 		Instant before = Instant.now();
-		log.info(String.format("Método: awaitElement() - Aguardando o elemento %s por %s segundos.", description, seconds.toString()));
+		log.info(String.format("Método: awaitElement() - Aguardando o elemento %s por %s segundos.", description, seconds));
 
 		try {
-			new WebDriverWait(getDriver(), seconds).until(ExpectedConditions.elementToBeClickable(getDriver().findElement(by)));
+			new WebDriverWait(getDriver(), Duration.ofSeconds(seconds)).until(ExpectedConditions.elementToBeClickable(getDriver().findElement(by)));
 			log.info(compareTime(before, Instant.now()));
 
 		} catch (NoSuchElementException e) {
@@ -584,12 +537,10 @@ public class Interactions{
 	 * @see #awaitElement(By, Integer, String)
 	 */
 	public void awaitElement(By by, String description) {
-		Instant before = Instant.now();
 		log.info(String.format("Método: awaitElement() - Aguardando o elemento %s por 15 segundos.", description));
 
 		try {
-			new WebDriverWait(getDriver(), null).until(ExpectedConditions.visibilityOf(getDriver().findElement(by)));
-			log.info(compareTime(before, Instant.now()));
+			new WebDriverWait(getDriver(), Duration.ofSeconds(30)).until(ExpectedConditions.visibilityOf(getDriver().findElement(by)));
 
 		} catch (NoSuchElementException e) {
 			NO_SUCH_ELEMENT.getException(e, description);
@@ -607,7 +558,56 @@ public class Interactions{
 			EXCEPTION.getException(e, description);
 		}
 	}
+	
+	/**
+	 * <p>
+	 * <strong>awaitElementBeClickable</strong>
+	 * <p>
+	 * <strong>Função:</strong> aguarda o tempo de carregamento de um elemento por
+	 * 15 segundos para ser clicavel, lançando uma exceção caso esse tempo seja ultrapassado. Também
+	 * informa quanto tempo levou para que o elemento fosse carregado em caso de
+	 * sucesso.
+	 * 
+	 * @param by          é o {@link By seletor} do elemento.
+	 * @param description é o {@link String nome} do elemento.
+	 * @return {@link Void void}
+	 * @throws NoSuchElementException          caso o elemento não existir.
+	 * @throws TimeoutException                caso exceder o tempo de carregamento
+	 *                                         do elemento.
+	 * @throws ElementNotVisibleException      caso a visão do elemento estiver
+	 *                                         obstruída ou ele estiver oculto.
+	 * @throws StaleElementReferenceException  caso o elemento não estiver mais
+	 *                                         visível na DOM.
+	 * @throws ElementNotInteractableException caso o elemento estiver visível, mas
+	 *                                         em um estado não interagível.
+	 * @throws Exception                       caso ocorra uma exceção não tratada.
+	 * @see InteracaoException
+	 * @see #compareTime(Instant, Instant)
+	 * @see #awaitElement(By, Integer, String)
+	 */
+	public void awaitElementBeClickable(By by, String description) {
+		log.info(String.format("Método: awaitElement() - Aguardando o elemento %s por 15 segundos.", description));
 
+		try {
+			new WebDriverWait(getDriver(), Duration.ofSeconds(15)).until(ExpectedConditions.elementToBeClickable(getDriver().findElement(by)));
+
+		} catch (NoSuchElementException e) {
+			NO_SUCH_ELEMENT.getException(e, description);
+
+		} catch (TimeoutException e) {
+			TIMEOUT.getException(e, description);
+
+		} catch (StaleElementReferenceException e) {
+			STALE_REFERENCE.getException(e, description);
+
+		} catch (ElementNotInteractableException e) {
+			NOT_INTERACTABLE.getException(e, description);
+
+		} catch (Exception e) {
+			EXCEPTION.getException(e, description);
+		}
+	}
+	
 	/**
 	 * <p>
 	 * <strong>Substitui:</strong>
