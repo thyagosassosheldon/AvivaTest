@@ -50,6 +50,8 @@ public class BrowserOptions {
 		options.setCapability("shouldTerminateApp",true);
 		options.setCapability("appWaitForLaunch ", false);
 		options.setCapability("uiautomator2ServerInstallTimeout", 120000);
+		options.setCapability("adbExecTimeout", 120000);
+		options.setCapability("androidInstallTimeout", 120000);
 
 		return options;
 	}
