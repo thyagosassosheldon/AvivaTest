@@ -1,5 +1,8 @@
 package core;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -31,7 +34,7 @@ public class BrowserOptions {
 		return options;
 	}
 
-	public static DesiredCapabilities appiumOptions() {
+	public static DesiredCapabilities appiumOptions(){
 		
 		DesiredCapabilities options = new DesiredCapabilities();
 		
@@ -41,10 +44,11 @@ public class BrowserOptions {
 		options.setCapability("platformName","Android");
 		options.setCapability("platformVersion","16");
 		options.setCapability("automationName","UiAutomator2");
+		options.setCapability("app", System.getProperty("user.dir") + "\\src\\test\\resources\\br.com.kabum.webviewapp-230.apk");
 		options.setCapability("appPackage","br.com.kabum.webviewapp");
 		options.setCapability("appActivity","br.com.kabum.webviewapp.MainActivity");
 		options.setCapability("shouldTerminateApp",true);
-		
+
 		return options;
 	}
 
