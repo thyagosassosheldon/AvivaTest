@@ -49,6 +49,7 @@ public class BrowserOptions {
 		options.setCapability("appActivity","br.com.kabum.webviewapp.MainActivity");
 		options.setCapability("shouldTerminateApp",true);
 		options.setCapability("appWaitForLaunch ", false);
+		options.setCapability("uiautomator2ServerInstallTimeout", 120000);
 
 		return options;
 	}
