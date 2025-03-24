@@ -7,6 +7,7 @@ import java.util.Objects;
 
 import javax.imageio.ImageIO;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -29,6 +30,7 @@ public class Utils {
 		File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 			//new File(String.format("%s_%s.png", path, nome))
 		screenshotLocation = new File(path+nome+".png");
+		FileUtils.copyFile(screenshot, screenshotLocation);
 		}catch(Exception e) {
 			
 		}
