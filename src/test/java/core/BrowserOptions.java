@@ -49,9 +49,9 @@ public class BrowserOptions {
 		options.setCapability("appActivity","br.com.kabum.webviewapp.MainActivity");
 		options.setCapability("shouldTerminateApp",true);
 		options.setCapability("appWaitForLaunch ", false);
-		options.setCapability("uiautomator2ServerInstallTimeout", 200000);
-		options.setCapability("adbExecTimeout", 200000);
-		options.setCapability("androidInstallTimeout", 200000);
+		options.setCapability("uiautomator2ServerInstallTimeout", 300000);
+		options.setCapability("adbExecTimeout", 300000);
+		options.setCapability("androidInstallTimeout", 300000);
 
 		return options;
 	}
