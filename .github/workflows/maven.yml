@@ -32,9 +32,7 @@ jobs:
 
     - name: Setup Appium
       run:
-        npm install -g appium@v2.17.1
-        appium -v
-        appium &>/dev/null &
+        npm install -g appium
         
     - name: Setup UiAutomator2
       run:
