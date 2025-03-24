@@ -16,6 +16,7 @@ Esse projeto contem testes automatizados usando Appium, junto do Selenium com Ja
 Esse repositorio foi criado para automtizar testes para a Avivatec. O código nesse repositorio possui:
 
 - Estrutura em POM.
+- Sistema de Error Handling para todas as interações
 - Integração do Java com Selenium e Cucumber.
 - Testes rodando automaticamente com o GitHub Actions em CI/CD a cada push/pull requests.
 - Screenshots disponiveis como artefatos no Github Actions.
