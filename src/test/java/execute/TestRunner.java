@@ -1,6 +1,9 @@
 package execute;
 
 import enums.Browsers;
+
+import java.io.IOException;
+
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 
@@ -22,12 +25,14 @@ import io.cucumber.junit.CucumberOptions.SnippetType;
 
 public class TestRunner {
 
+	
+	
 	public static boolean CLOSE = true;
 	public static boolean HEADLESS = false;
 	public static Browsers BROWSER = Browsers.ANDROID;
 
 	@BeforeClass
-	public static void screenshotFileCheck() {
+	public static void screenshotFileCheck() throws IOException {
 		//Utils.createFiles();
 		//Utils.deleteFiles();
 	}
