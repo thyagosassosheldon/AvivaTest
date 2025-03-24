@@ -47,6 +47,13 @@ jobs:
       with:
         api-level: 29
         script: mvn clean test -Pandroid
+
+    - name: Upload screenshots
+      uses: actions/upload-artifact@latest
+      if: failure()
+      with:
+        name: appium-snapshots
+        path: target/evidencias
       
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
