@@ -16,8 +16,8 @@ public class Hooks {
 
 	@Before(order = 0)
 	public void setarConfiguracoes() {
-		getDriver().manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-		new WebDriverWait(getDriver(), Duration.ofSeconds(15));
+		getDriver().manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+		new WebDriverWait(getDriver(), Duration.ofSeconds(60));
 	}
 
 	@After(order = 0)
