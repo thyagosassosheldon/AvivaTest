@@ -26,7 +26,12 @@ jobs:
       with:
         distribution: 'temurin'
         java-version: '24'
-        
+
+    - name: Setup Android SDK
+      uses: android-actions/setup-android@v3
+      with:
+        cmdline-tools-version: 12266719
+    
     - name: Pull the project in to the runner
       uses: actions/checkout@v3
 
@@ -38,15 +43,23 @@ jobs:
       run:
         appium driver install uiautomator2 
 
-    - name: Start Appium and install apk
+    - name: Start Appium
       run:
-        nohup appium -p 4725 -pa /wd/hub & 
-        adb install-multiple "src\test\resources\base.apk" "src\test\resources\split_config.en.apk" "src\test\resources\split_config.x86_64.apk"
-        
+        nohup appium -p 4725 -pa /wd/hub &
+
+    - name: Install APK
+      uses: reactivecircus/android-emulator-runner@v2
+      with:
+        api-level: 29
+        arch: arm64-v8a
+        script: adb install-multiple "${GITHUB_WORKSPACE}/src/test/resources/base.apk" "${GITHUB_WORKSPACE}/src/test/resources/split_config.en.apk" "${GITHUB_WORKSPACE}/src/test/resources/split_config.x86_64.apk" "${GITHUB_WORKSPACE}/src/test/resources/split_config.xxhdpi.apk"
+
+
     - name: Run Appium Android Tests
       uses: reactivecircus/android-emulator-runner@v2
       with:
         api-level: 29
+        arch: arm64-v8a
         script: mvn clean test -Pandroid
 
     - name: Upload screenshots
