@@ -26,7 +26,12 @@ jobs:
       with:
         distribution: 'temurin'
         java-version: '24'
-        
+
+    - name: Setup Android SDK
+      uses: android-actions/setup-android@v3
+      with:
+        cmdline-tools-version: 12266719
+    
     - name: Pull the project in to the runner
       uses: actions/checkout@v3
 
