@@ -32,7 +32,6 @@ Antes de começar, tenha certeza de ter instalado:
 - Appium v2.17.1
 - Android Studio v24 ou superior
 - Android Emulado em versão 16
-- Instalar Apk da Kabum ( Visto que não foi possivel conseguir o arquivo .apk por conta da lei DMCA )
 - UiAutomator2 driver para o Appium
 
 ## Instalação
