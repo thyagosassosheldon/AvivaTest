@@ -38,10 +38,11 @@ jobs:
       run:
         appium driver install uiautomator2 
 
-    - name: Start Appium
+    - name: Start Appium and install apk
       run:
         nohup appium -p 4725 -pa /wd/hub & 
-
+        adb install-multiple "src\test\resources\base.apk" "src\test\resources\split_config.en.apk" "src\test\resources\split_config.x86_64.apk"
+        
     - name: Run Appium Android Tests
       uses: reactivecircus/android-emulator-runner@v2
       with:
