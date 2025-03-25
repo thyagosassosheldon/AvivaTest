@@ -6,12 +6,21 @@ import core.BasePage;
 
 public class HomePageMobile extends BasePage{
 	
+	
+	
     private By searchTxt = By.xpath("//android.widget.AutoCompleteTextView[@resource-id=\"br.com.kabum.webviewapp:id/search_src_text\"]");
 	private By addToCartBtn = By.xpath("(//android.widget.TextView[@text=\"COMPRAR\"])[1]");
 	private By goForCartBtn = By.xpath("//android.widget.Button[@resource-id=\"br.com.kabum.webviewapp:id/button_primary\"]");
 	private By skipNotificationBtn = By.xpath("//android.widget.Button[@resource-id=\"br.com.kabum.webviewapp:id/btn_cancel\"]");
 	private By myAccountBtn = By.xpath("//android.widget.FrameLayout[@content-desc=\"Minha conta\"]");
 	private By addedToCardTxt = By.xpath("//android.widget.TextView[@resource-id=\"br.com.kabum.webviewapp:id/success_message\"]");
+	private By allowNotificationSkipBtn = By.xpath("//android.widget.Button[@resource-id=\"br.com.kabum.webviewapp:id/btn_cancel\"]");
+	
+	void HomePage(){
+		if(interactions.isElementDisplayed(allowNotificationSkipBtn, "allowNotificationSkipBtn")) {
+			interactions.click(allowNotificationSkipBtn, "allowNotificationSkipBtn");;
+		}
+	}
 	
 	public void skipNotification() {
 		interactions.click(skipNotificationBtn, "skipNotificationBtn");

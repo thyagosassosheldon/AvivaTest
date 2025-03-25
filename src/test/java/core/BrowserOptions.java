@@ -52,6 +52,7 @@ public class BrowserOptions {
 		options.setCapability("uiautomator2ServerInstallTimeout", 300000);
 		options.setCapability("adbExecTimeout", 300000);
 		options.setCapability("androidInstallTimeout", 300000);
+		options.setCapability("noReset", true);
 
 		return options;
 	}
