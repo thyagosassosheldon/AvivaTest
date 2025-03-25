@@ -51,7 +51,7 @@ jobs:
       uses: reactivecircus/android-emulator-runner@v2
       with:
         api-level: 29
-        script: adb install-multiple "src\test\resources\base.apk" "src\test\resources\split_config.en.apk" "src\test\resources\split_config.x86_64.apk"
+        script: adb install-multiple "\home\runner\work\AvivaTest\AvivaTest\src\test\resources\base.apk" "\home\runner\work\AvivaTest\AvivaTest\src\test\resources\split_config.en.apk" "\home\runner\work\AvivaTest\AvivaTest\src\test\resources\split_config.x86_64.apk"
 
 
     - name: Run Appium Android Tests
