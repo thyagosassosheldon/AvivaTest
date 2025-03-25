@@ -3,6 +3,7 @@ package execute;
 import static core.DriverFactory.*;
 
 import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
@@ -19,14 +20,13 @@ public class Hooks {
 	
 
 	@Before(order = 0)
-	public void setarConfiguracoes() {
+	public void setarConfiguracoes() throws IOException, InterruptedException {
+		String mainPath = System.getProperty("user.dir");
+		Runtime rt = Runtime.getRuntime();
+		Process pr = rt.exec("adb install-multiple \""+mainPath+"/src/test/resources/base.apk\" \""+mainPath+"/src/test/resources/split_config.xxhdpi.apk\" \""+mainPath+"/src/test/resources/split_config.en.apk\" \""+mainPath+"/src/test/resources/split_config.x86_64.apk\"");
+		Thread.sleep(10000);
 		getDriver().manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 		new WebDriverWait(getDriver(), Duration.ofSeconds(60));
-	}
-	
-	@Before(order = 0)
-	public void extentReport() {
-		
 	}
 	
 	@After(order = 1)
@@ -37,6 +37,7 @@ public class Hooks {
 
 		fullPageScreenshot(caminho, nome, getDriver());
 	}
+	
 
 	@After(order = 0)
 	public void finalizar() {

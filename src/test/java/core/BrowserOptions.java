@@ -44,7 +44,7 @@ public class BrowserOptions {
 		options.setCapability("platformName","Android");
 		options.setCapability("platformVersion","16");
 		options.setCapability("automationName","UiAutomator2");
-		options.setCapability("app", System.getProperty("user.dir") + "/src/test/resources/br.com.kabum.webviewapp-230.apk");
+		//options.setCapability("app", System.getProperty("user.dir") + "/src/test/resources/br.com.kabum.webviewapp-230.apk");
 		options.setCapability("appPackage","br.com.kabum.webviewapp");
 		options.setCapability("appActivity","br.com.kabum.webviewapp.MainActivity");
 		options.setCapability("shouldTerminateApp",true);
