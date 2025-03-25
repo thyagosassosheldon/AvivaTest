@@ -40,7 +40,10 @@ jobs:
 
     - name: Start Appium and install apk
       run:
-        nohup appium -p 4725 -pa /wd/hub & 
+        nohup appium -p 4725 -pa /wd/hub &
+
+    - name: Install apk
+      run:
         adb install-multiple "src\test\resources\base.apk" "src\test\resources\split_config.en.apk" "src\test\resources\split_config.x86_64.apk"
         
     - name: Run Appium Android Tests
