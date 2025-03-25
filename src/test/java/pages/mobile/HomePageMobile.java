@@ -16,7 +16,7 @@ public class HomePageMobile extends BasePage{
 	private By addedToCardTxt = By.xpath("//android.widget.TextView[@resource-id=\"br.com.kabum.webviewapp:id/success_message\"]");
 	private By allowNotificationSkipBtn = By.xpath("//android.widget.Button[@resource-id=\"br.com.kabum.webviewapp:id/btn_cancel\"]");
 	
-	void HomePage(){
+	public HomePageMobile(){
 		if(interactions.isElementDisplayed(allowNotificationSkipBtn, "allowNotificationSkipBtn")) {
 			interactions.click(allowNotificationSkipBtn, "allowNotificationSkipBtn");;
 		}
